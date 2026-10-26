@@ -1,0 +1,5 @@
+# Sistema
+.DS_Store
+
+# Datos de ejecución (el experimento no se ejecuta en esta práctica)
+plantillas/resultados_reales*.csv
