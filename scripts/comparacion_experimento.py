@@ -3,6 +3,9 @@
 #   python scripts/comparacion_experimento.py
 
 # TODO 1: carga plantillas/registro_experimento.csv con pandas
+import pandas as pd
+
+df = pd.read_csv("plantillas/registro_experimento.csv")
 # TODO 2: calcula e imprime el promedio de ventas_producto por ubicacion
 # TODO 3: imprime el número de registros por grupo (value_counts)
 # TODO 4: escribe 2–3 líneas de interpretación (sección 9 de la plantilla):
