@@ -6,23 +6,25 @@ Completa cada sección. Usa commits por sección; la historia del repositorio se
 
 ## 1. Pregunta e hipótesis
 
-El producto en el pasillo principal vende más en promedio que su ubicación habitual en ventas semanales durante 4 semanas
+**Pregunta:** ¿cambiar la ubicación del producto estrella al pasillo principal aumenta sus ventas?
+
+**Hipótesis:** durante 4 semanas, las ventas semanales del producto estrella (en USD) serán mayores, en promedio, en las tienda-semana en que el producto está en el pasillo principal (tratamiento) que en las tienda-semana en que permanece en su ubicación habitual (control).
+
+**Hipótesis nula:** no hay diferencia entre las ventas semanales promedio de las dos ubicaciones.
 
 ## 2. Unidad experimental
-
-Semana-Tienda **(# de tiendas x # de semanas)**
-
-- 10 tiendas x 4 semanas = 40
+- Unidad: la tienda-semana (una tienda durante una semana). Cada una recibe una sola ubicación del producto.
+- Número de unidades y justificación: 10 tiendas × 4 semanas = 40 unidades, 20 por grupo. Es un piloto manejable en logística. Como cada tienda pasa por ambos niveles, se compara consigo misma y se reduce el efecto de las diferencias entre tiendas. No se calculó el tamaño necesario para detectar un efecto; se declara como limitación (sección 8).
 
 ## 3. Factor, niveles y tratamiento
 
-- **Factor** (variable manipulada): Ubicación
-- **Niveles** (valores del factor): pasillo y habitual
-- **Tratamiento** (combinación asignada): pasillo durante una semana y ubicación habitual durante otra (grupo de control)
-
+- **Factor** (variable manipulada): ubicación del producto estrella dentro de la tienda.
+- **Niveles** (valores del factor): pasillo principal y ubicación habitual.
+- **Tratamiento** (combinación asignada): colocar el producto en el pasillo principal durante la semana asignada, con el mismo precio y sin promociones propias. El pasillo principal es un nivel del factor; el tratamiento es la acción de mover el producto a ese nivel.
+- 
 ## 4. Grupo de control
 
-La misma tienda pero con el producto dispuesto en la ubicación habitual
+Las tienda-semana en que el producto permanece en su ubicación habitual. Son la referencia sin tratamiento: muestran cuánto se vende sin el cambio y absorben los efectos que afectan a todas las unidades por igual (temporada, tendencia general). Sin control no se podría saber si un aumento se debe al pasillo o a algo que habría pasado igual.
 
 ## 5. Aleatorización
 
