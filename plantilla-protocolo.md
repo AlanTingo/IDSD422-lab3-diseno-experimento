@@ -95,13 +95,22 @@ La semilla fija el sorteo para que cualquiera pueda reproducirlo y auditarlo.
 - **No se podrá concluir** que el efecto valga para otros productos, otras tiendas ni otras épocas del año.
 
 ## 9. Comparación en código (Python/R)
+Se ejecutó `scripts/comparacion_experimento.py` sobre `plantillas/registro_experimento.csv` (4 filas):
 
-*Escribe `scripts/comparacion_experimento.py` (o `.R`): debe cargar `plantillas/registro_experimento.csv` y calcular el promedio de `ventas_producto` por `ubicacion`. Incluye la salida y responde:*
+```
+Promedio de ventas_producto por ubicación:
+ubicacion
+habitual             1040.0
+pasillo_principal    1335.0
+Name: ventas_producto, dtype: float64
 
-- ¿Qué grupo muestra mayor venta promedio en la plantilla?
-El pasillo muestra 1335 USD en venta frente a 1040 USD en habitual 
+Registros por grupo:
+ubicacion
+pasillo_principal    2
+habitual             2
+Name: count, dtype: int64
+```
 
-- ¿Por qué con 4 filas no se puede concluir nada sobre el efecto de la ubicación?
-NO se puede concluir porque no hay ninguna asignacion real aleatoria, los datos son muy pocos (4) no tenemos control de temporada, ni promociones en el grupo pasillo  y no hay medida de variablilidad
-
-- Si el experimento se ejecutara con tu protocolo, ¿qué le faltaría a este análisis para ser justo?
+- **¿Qué grupo muestra mayor venta promedio en la plantilla?** El pasillo principal (1 335 frente a 1 040 USD). Eso describe solo estas 4 filas.
+- **¿Por qué con 4 filas no se puede concluir nada sobre el efecto de la ubicación?** Hay 2 filas por grupo: no se puede estimar la variabilidad, y la diferencia puede ser puro azar. No hay asignación aleatoria verificada ni control de temporada. Además, una fila del pasillo principal (Guayaquil Centro) tuvo `promocion_simultanea = si`, así que su venta mayor puede deberse a la promoción o a la ciudad, no a la ubicación.
+- **Si el experimento se ejecutara con este protocolo, ¿qué le faltaría a este análisis para ser justo?** Las 40 tienda-semana en lugar de 4 filas; verificar que la asignación fue la sorteada en la sección 5; controlar o excluir las semanas con promoción; tener en cuenta que cada tienda aporta varias semanas, y una medida de incertidumbre (intervalo de confianza o prueba estadística) en lugar de solo el promedio por grupo.
