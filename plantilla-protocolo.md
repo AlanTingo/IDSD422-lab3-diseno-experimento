@@ -28,9 +28,46 @@ Las tienda-semana en que el producto permanece en su ubicación habitual. Son la
 
 ## 5. Aleatorización
 
-Sorteo de 20 tiendas a cada grupo (Paralelo).
+Las 40 tienda-semana se asignan a los grupos con un sorteo en código, no a criterio de una persona. Dentro de cada tienda se sortean 2 de las 4 semanas para el tratamiento, así cada tienda aporta 2 semanas por grupo. El sorteo es necesario por dos razones:
 
-- **Línea de código de la asignación (Python o R):** escribe el comando que asigna al azar tus N unidades a los dos grupos (tratamiento y control) y ejecútalo con semilla. Incluye el resultado de una corrida y explica por qué el sorteo reparte los factores desconocidos entre los grupos.
+- Reparte entre los dos grupos, por azar, los factores que no se pueden medir (clientela, clima, ánimo de compra de la semana), de modo que no favorezcan sistemáticamente a un grupo.
+- Evita el sesgo de selección: nadie puede poner el tratamiento en las semanas que prevé buenas. Por eso es un experimento y no un estudio observacional: el investigador asigna.
+
+```python
+import numpy as np, pandas as pd
+
+np.random.seed(42)                      # semilla: la asignación es reproducible
+filas = []
+for t in range(1, 11):                  # 10 tiendas
+    trat = np.random.choice([1, 2, 3, 4], size=2, replace=False)   # 2 semanas con tratamiento
+    for s in [1, 2, 3, 4]:
+        filas.append({"tienda": f"T{t:02d}", "semana": s,
+                      "ubicacion": "pasillo_principal" if s in trat else "habitual"})
+asignacion = pd.DataFrame(filas)
+print(asignacion.head(8).to_string(index=False))
+print(asignacion["ubicacion"].value_counts())
+```
+
+Resultado de una corrida (semilla 42):
+
+```
+tienda  semana         ubicacion
+   T01       1          habitual
+   T01       2 pasillo_principal
+   T01       3          habitual
+   T01       4 pasillo_principal
+   T02       1          habitual
+   T02       2 pasillo_principal
+   T02       3          habitual
+   T02       4 pasillo_principal
+
+ubicacion
+habitual             20
+pasillo_principal    20
+Name: count, dtype: int64
+```
+
+La semilla fija el sorteo para que cualquiera pueda reproducirlo y auditarlo.
 
 ## 6. Respuesta y medición
 
