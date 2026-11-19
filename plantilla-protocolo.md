@@ -71,23 +71,28 @@ La semilla fija el sorteo para que cualquiera pueda reproducirlo y auditarlo.
 
 ## 6. Respuesta y medición
 
-- Variable respuesta: Ventas semanales en USD
-- Período de medición: 4 semanas
-- Quién registra y cómo (¿ciego?): Mediante el POS, ciego (vendedor no sabia si el producto esta en principal o en habitual)
+- Variable respuesta: `ventas_producto`, ventas del producto estrella por tienda-semana, en USD.
+- Período de medición: las mismas 4 semanas consecutivas para todas las tiendas.
+- Quién registra y cómo (¿ciego?): el sistema de punto de venta (POS), no el personal de la tienda. El personal no puede ser ciego, porque mueve el producto. Quien analiza los datos recibe los grupos con etiquetas neutras (A y B) y no sabe cuál es el tratamiento hasta terminar la comparación.
 
 ## 7. Factores a controlar (mínimo 4)
 
 | Factor a controlar | Cómo se controla o registra |
 |---|---|
-| 1. | clima |
-| 2. | Evento local |
-| 3. | Surtido / Stock |
-| 4. | Cambios en el personal|
+| 1. Clima | Se registra por semana; como cada tienda pasa por ambos niveles en las mismas 4 semanas, el clima afecta a los dos grupos. |
+| 2. Evento local | Se anota por tienda-semana y se marcan las semanas afectadas para analizarlas aparte. |
+| 3. Surtido / stock | Reposición igual en ambos grupos; se registran los quiebres de stock, porque sin producto no hay ventas. |
+| 4. Cambios en el personal | Se registra el personal por semana y se evitan cambios durante el experimento. |
+| 5. Precio y promociones | Mismo precio en todas las tiendas y semanas; sin promociones del producto ni de sustitutos; si ocurre una, se registra en `promocion_simultanea`. |
 
 ## 8. Limitaciones del diseño
 
-- Perdida de potencia por promociones
-- Canibalizacion de las tiendas
+- **Promociones y canibalización:** una promoción simultánea resta potencia al análisis, y mover el producto al pasillo principal puede quitar ventas a otros productos de la tienda; este diseño mide solo el producto estrella, no las ventas totales.
+- **Efecto residual:** lo que ocurre en una semana puede influir en la siguiente (hábitos de compra, stock). Aleatorizar el orden lo reparte, pero no lo elimina.
+- **Independencia:** las 40 unidades no son independientes, porque cada tienda aporta 4. El análisis debe tener en cuenta la tienda y no tratar las filas como 40 tiendas distintas.
+- **Tamaño pequeño:** con 10 tiendas el azar pesa mucho, y no se calculó el tamaño necesario para detectar un efecto.
+- **Sin ciego completo:** el personal sabe cuándo está el tratamiento y podría influir (por ejemplo, recomendando el producto).
+- **No se podrá concluir** que el efecto valga para otros productos, otras tiendas ni otras épocas del año.
 
 ## 9. Comparación en código (Python/R)
 
